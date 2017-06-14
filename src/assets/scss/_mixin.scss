@@ -1,0 +1,271 @@
+// 媒体查询变量
+// -------------------------------
+$base-fonts-default: 100px; // 基准数
+$max-container: 640px; // 最大视屏宽度,根据设计稿而定
+$responsives: 320px, 360px, 375px, 384px, 414px, 480px, 640px; // 屏幕断点
+
+@function px2rem($value) {
+  @return $value / $base-fonts-default *1rem;
+}
+
+// 获取rem基准值
+// -------------------------------
+@mixin fz($values) {
+  font-size: $values * $base-fonts-default / $max-container;
+}
+
+// 设置根节点rem基准值
+// -------------------------------
+@each $responsive in $responsives {
+  @media only screen and (min-width: #{$responsive}) {
+    html {
+      @include fz($responsive);
+    }
+  }
+}
+
+// 特别的媒体查询适配
+// -------------------------------
+@media only screen and (max-width: 319px) {
+  html {
+    @include fz(319px);
+  }
+}
+
+//@media only screen and (min-width: 414px) {
+//  html {
+//    @include fz(375px);
+//  }
+//}
+@media (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+  /*iphone 5*/
+  html {
+    @include fz(375px);
+  }
+}
+
+@media (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+  /*iphone 6*/
+  html {
+    @include fz(375px);
+  }
+}
+
+@media (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+  /*iphone 6 plus*/
+  html {
+    @include fz(375px);
+  }
+}
+
+// 单位转换Mixin
+// -------------------------------
+
+// px转px
+// -------------------------------
+@mixin px2px($name,$value) {
+  @each $responsive in $responsives {
+    @media only screen and (min-width: #{$responsive}) {
+      #{$name}: round(($value) * $responsive / $max-container);
+    }
+  }
+}
+
+// px转rem
+@mixin px2rem($name,$value) {
+  #{$name}: $value / $base-fonts-default *1rem;
+}
+
+//padding&margin转换rem
+@mixin pm2rem($name,$top,$right,$down,$left) {
+  #{$name}: $top/$base-fonts-default *1rem $right/$base-fonts-default *1rem $down/$base-fonts-default *1rem $left/$base-fonts-default *1rem;
+}
+
+// 文字转换方法
+// -------------------------------
+@mixin font-dpr($px) {
+  & {
+    font-size: $px * 0.5;
+  }
+
+  [data-dpr="2"] & {
+    font-size: $px;
+  }
+
+  [data-dpr="3"] & {
+    font-size: $px * 1.5;
+  }
+}
+
+@mixin border-radius-dpr($px, $direction:'all') {
+  @if ($direction == 'all') {
+    @include px2rem(-webkit-border-radius, $px);
+    @include px2rem(-moz-border-radius, $px);
+    @include px2rem(border-radius, $px);
+  } @else {
+    @include px2rem(-webkit-border-#{$direction}-radius, $px);
+    @include px2rem(-moz-border-#{$direction}-radius, $px);
+    @include px2rem(border-#{$direction}-radius, $px);
+  }
+}
+
+@mixin bg-img-width-full($url, $position-x:center, $position-y:top) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  background-position: $position-x $position-y;
+}
+
+@mixin bg-img-width-height-full($url, $position-x:center, $position-y:top) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-position: $position-x $position-y;
+}
+
+@mixin bg-img-height-full($url, $position-x:center, $position-y:top) {
+  background-image: url($url);
+  background-repeat: no-repeat;
+  -webkit-background-size: auto 100%;
+  background-size: auto 100%;
+  background-position: $position-x $position-y;
+}
+
+@mixin distance-dpr($property, $px, $direction:x) {
+  @if ($direction == x) {
+    @include px2rem(#{$property}-left, $px);
+    @include px2rem(#{$property}-right, $px);
+  } @else if ($direction == y) {
+    @include px2rem(#{$property}-top, $px);
+    @include px2rem(#{$property}-bottom, $px);
+  }
+}
+
+@mixin animation-toggle-shake($animateName, $fromTrans, $toTrans, $time:0.5s) {
+  @keyframes toggle-#{$animateName} {
+    from {
+      transform: rotate($fromTrans);
+    }
+    to {
+      transform: rotate($toTrans);
+    }
+  }
+
+  & {
+    -webkit-animation: toggle-#{$animateName} $time linear infinite alternate;
+    -o-animation: toggle-#{$animateName} $time linear infinite alternate;
+    animation: toggle-#{$animateName} $time linear infinite alternate;
+  }
+}
+
+@mixin square-dpr($px) {
+  @include px2rem(width, $px);
+  @include px2rem(height, $px);
+}
+
+@mixin circle-dpr($px) {
+  @include square-dpr($px);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+@mixin clearfix() {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin text-overflow() {
+  & {
+    overflow: hidden;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+}
+
+@mixin mp-animation($name, $value) {
+  -webkit-#{$name}: $value;
+  -moz-#{$name}: $value;
+  -o-#{$name}: $value;
+  #{$name}: $value;
+}
+
+//垂直填充/边距
+@mixin paddingVer($value) {
+  padding-top: $value / $base-fonts-default *1rem;
+  padding-bottom: $value / $base-fonts-default *1rem;
+}
+
+@mixin marginVer($value) {
+  margin-top: $value / $base-fonts-default *1rem;
+  margin-bottom: $value / $base-fonts-default *1rem;
+}
+
+//水平填充/边距
+@mixin paddingHor($value) {
+  padding-left: $value / $base-fonts-default *1rem;
+  padding-right: $value / $base-fonts-default *1rem;
+}
+
+@mixin marginHor($value) {
+  margin-left: $value / $base-fonts-default *1rem;
+  margin-right: $value / $base-fonts-default *1rem;
+}
+
+// User select
+// --------------------------------------------------
+
+@mixin user-select($select) {
+  -webkit-user-select: $select;
+  -moz-user-select: $select;
+  -ms-user-select: $select;
+  user-select: $select;
+}
+
+// 生成 flex 兼容属性
+@mixin flex-compatible() {
+  display: -webkit-box;  /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  display: -moz-box;     /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox;  /* 混合版本语法: IE 10 */
+  display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex;         /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+// 生成 flex 子兼容属性
+@mixin flex-child($flexChild) {
+  -webkit-box-flex: $flexChild;   /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: $flexChild;     /* OLD - Firefox 19- */
+  -webkit-flex: $flexChild;      /* Chrome */
+  -ms-flex: $flexChild;           /* IE 10 */
+  flex: $flexChild;              /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &:-moz-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &:-ms-input-placeholder {
+    @content
+  }
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}

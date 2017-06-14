@@ -20,6 +20,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
+    modules: [
+      resolve('src'),
+      resolve('node_modules')
+    ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
@@ -42,10 +46,20 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
+        // 兼容app端，按照es2015编译
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        exclude: /node_modules/,
+        query: {
+          presets: ['es2015'],
+          plugins: ['transform-runtime']
+        }
       },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'babel-loader',
+      //   include: [resolve('src'), resolve('test')]
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',

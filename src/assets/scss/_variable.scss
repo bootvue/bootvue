@@ -1,0 +1,36 @@
+/*
+定义整个项目中的统一变量，
+1、默认字体
+2、字号大小（建议和设计师沟通，整体项目字体大小只分3-5中，极大，大，正常，小，极小）
+3、颜色（建议和设计师沟通，整体项目的主色和配色加起来不超过5种，主色一个，配色3种左右）
+*/
+//颜色
+$color-primary: #1d4086 !default; //深蓝色
+$color-secondary: #e4e8f0 !default; //浅蓝色
+//文字颜色
+$color-text-primary: #282828 !default; //文字主色调
+$color-text-lightRed: #ff1849 !default; //文字红色
+$color-text-lightOrangeRed: #f71b2b !default; //文字红色
+$color-text-lightBlue: #1d4086 !default; //文字蓝色
+$color-text-Orange: #e17226 !default; //文字橘黄
+//border边线
+$color-border-bottom: #c3c3c3 !default; //border颜色
+$color-border-bottom-Orange: #e17226 !default; //border颜色-橘黄
+$color-border-line: #bbb !default; //1px border颜色
+$color-border-line2: #c3c3c3 !default; //1px border颜色
+
+/*
+公共变量
+作者：唐泽勇
+邮箱：tangzy@kayak.com.cn
+出了问题来找我  0.0
+开始
+ */
+$orange: #f35917; // 橘色
+$white: #fff;
+
+/*
+公共变量
+作者：唐泽勇
+结束
+ */

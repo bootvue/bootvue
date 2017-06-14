@@ -1,0 +1,237 @@
+// 项目中初始化css样式
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  // color: #555;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  //font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: "Pingfang SC", "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, sans-serif;
+  // background-color: #f6f2f1;
+  text-rendering: optimizeLegibility; // Gecko内核的浏览器将强调可读性和几何精度，同时绘制文本渲染速度，启用字距和连写。
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+  margin: 0;
+  padding: 0;
+}
+
+a, button, input {
+  -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+}
+
+a, button, input {
+  border: 0;
+  outline: none;
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none !important;
+}
+
+td, th, caption {
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  font-size: 100%;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+a {
+  color: #555;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  border: none;
+}
+
+ol, ul, li {
+  list-style: none;
+}
+
+// 去除ios输入框阴影
+input {
+  border: none;
+  border-radius: 0;
+  line-height: normal;
+  -webkit-appearance: none;
+}
+
+// 去除input被选中是的外边框
+input:focus {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+// 固定在屏幕底部
+.is-fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+// 清除浮动
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+// 修改 Mint UI 的 {Indicator} 组件样式，使它保持最前
+.mint-indicator {
+  .mint-indicator-wrapper {
+    z-index: 2100;
+  }
+
+  .mint-indicator-mask {
+    z-index: 2100;
+  }
+}
+
+// 银行卡图标
+// .ICBC {
+//   background: url('./assets/img/bankimg/ICBC.svg') no-repeat center 100% #FFF;
+// }
+
+// .CMB {
+//   background: url('./assets/img/bankimg/CMB.svg') no-repeat center 100% #FFF;
+// }
+
+// .CCB {
+//   background: url('./assets/img/bankimg/CCB.svg') no-repeat center 100% #FFF;
+// }
+
+// .ABC {
+//   background: url('./assets/img/bankimg/ABC.svg') no-repeat center 100% #FFF;
+// }
+
+// .BOC {
+//   background: url('./assets/img/bankimg/BOC.svg') no-repeat center 100% #FFF;
+// }
+
+// .SPDB {
+//   background: url('./assets/img/bankimg/SPDB.svg') no-repeat center 100% #FFF;
+// }
+
+// .CMBC {
+//   background: url('./assets/img/bankimg/CMBC.svg') no-repeat center 100% #FFF;
+// }
+
+// .ECITIC {
+//   background: url('./assets/img/bankimg/ECITIC.svg') no-repeat center 100% #FFF;
+// }
+
+// .HXB {
+//   background: url('./assets/img/bankimg/HXB.svg') no-repeat center 100% #FFF;
+// }
+
+// .CEBB {
+//   background: url('./assets/img/bankimg/CEBB.svg') no-repeat center 100% #FFF;
+// }
+
+// .SPABANK {
+//   background: url('./assets/img/bankimg/SPABANK.svg') no-repeat center 100% #FFF;
+// }
+
+// .CBHB {
+//   background: url('./assets/img/bankimg/CBHB.svg') no-repeat center 100% #FFF;
+// }
+
+// .JXBANK {
+//   background: url('./assets/img/bankimg/JXBANK.svg') no-repeat center 100% #FFF;
+// }
+
+// .heqianbao {
+//   background: url('./assets/img/bankimg/heqianbao.svg') no-repeat center 100% #FFF;
+// }
+
+// 银行卡图标 END
+
+// 银行卡颜色
+.ICBC-color {
+  background-color: #E95545 !important;
+}
+
+.CMB-color {
+  background-color: #E95545 !important;
+}
+
+.CCB-color {
+  background-color: #0070BF !important;
+}
+
+.ABC-color {
+  background-color: #30A08F !important;
+}
+
+.BOC-color {
+  background-color: #E95545 !important;
+}
+
+.SPDB-color {
+  background-color: #0070BF !important;
+}
+
+.CMBC-color {
+  background-color: #0070BF !important;
+}
+
+.ECITIC-color {
+  background-color: #E95545 !important;
+}
+
+.HXB-color {
+  background-color: #E95545 !important;
+}
+
+.CEBB-color {
+  background-color: #9537C0 !important;
+}
+
+.SPABANK-color {
+  background-color: #0070BF !important;
+}
+
+.CBHB-color {
+  background-color: #0070BF !important;
+}
+
+.JXBANK-color {
+  background-color: #0070BF !important;
+}
+
+.heqianbao-color {
+  background-color: yellow !important;
+}
+// 银行卡颜色 END
